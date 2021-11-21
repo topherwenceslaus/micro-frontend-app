@@ -6,14 +6,29 @@ const MarketingApp = React.lazy(() => import("./components/MarketingApp"));
 const AuthApp = React.lazy(() => import("./components/Auth"));
 
 const App = () => {
+  const [isSignedIn, setIsSignedIn] = React.useState(false);
+
+  const handleSignIn = () => {
+    setIsSignedIn(true);
+  };
+
   return (
     <BrowserRouter>
       <div>
-        <Header />
+        <Header
+          onSignOut={() => {
+            setIsSignedIn(false);
+          }}
+          isSignedIn={isSignedIn}
+        />
         <React.Suspense fallback={<h1>loading!!</h1>}>
           <Switch>
-            <Route path="/auth" component={AuthApp} />
-            <Route path="/" component={MarketingApp} />
+            <Route path="/auth">
+              <AuthApp isSignedIn={isSignedIn} onSignIn={handleSignIn} />
+            </Route>
+            <Route path="/">
+              <MarketingApp isSignedIn={isSignedIn} onSignIn={handleSignIn} />
+            </Route>
           </Switch>
         </React.Suspense>
       </div>

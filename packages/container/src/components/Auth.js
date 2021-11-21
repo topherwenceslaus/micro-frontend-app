@@ -2,7 +2,7 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import { mount } from "auth/AuthApp";
 
-const AuthApp = () => {
+const AuthApp = ({ onSignIn }) => {
   const history = useHistory();
   const authRef = React.createRef(null);
 
@@ -15,6 +15,9 @@ const AuthApp = () => {
         }
       },
       initialPath: history.location.pathname,
+      onSignIn: () => {
+        onSignIn();
+      },
     });
 
     history.listen(onContainerNavigationChange);
