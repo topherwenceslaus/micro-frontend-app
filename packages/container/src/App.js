@@ -1,16 +1,18 @@
 import React from "react";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Header from "./components/Header";
 import MarketingApp from "./components/MarketingApp";
-
-//Test commit 2
+import AuthApp from "./components/Auth";
 
 const App = () => {
   return (
     <BrowserRouter>
       <div>
         <Header />
-        <MarketingApp />
+        <Switch>
+          <Route path="/auth" component={AuthApp} />
+          <Route path="/" component={MarketingApp} />
+        </Switch>
       </div>
     </BrowserRouter>
   );

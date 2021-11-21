@@ -9,7 +9,7 @@ const devConfig = {
   devServer: {
     port: 8082,
     historyApiFallback: {
-      index: "index.html",
+      index: "/index.html",
     },
   },
   plugins: [
@@ -22,6 +22,9 @@ const devConfig = {
       shared: packageJson.dependencies,
     }),
   ],
+  output: {
+    publicPath: "http://localhost:8082/",
+  },
 };
 
 module.exports = merge(commonConfig, devConfig);
