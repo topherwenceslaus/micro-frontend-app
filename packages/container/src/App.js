@@ -1,7 +1,7 @@
 import React from "react";
 import MarketingApp from "./components/MarketingApp";
 
-//Test commit 1
+//Test commit 2
 
 const App = () => {
   return (
